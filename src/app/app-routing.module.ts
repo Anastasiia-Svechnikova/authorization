@@ -1,22 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthComponent } from './auth/auth.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { SiteLayoutComponent } from './shared/site-layout/site-layout.component';
 
 const routes: Routes = [
   {
     path: 'login',
-    component: AuthComponent,
-    },
-    {
+    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
+  },
+  {
     path: 'dashboard',
-    component: DashboardComponent,
-    },
-    {
-    path: 'admin',
-    component: DashboardComponent,
-    },
-    
+    component: SiteLayoutComponent,
+    children: [
+      { path: 'user', component: DashboardComponent },
+      { path: 'admin', component: DashboardComponent },
+    ],
+  },
 ];
 
 @NgModule({
