@@ -1,0 +1,65 @@
+.header {
+  width: 100%;
+  height: 70px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background-color: white;
+  background-image: linear-gradient(
+    157deg,
+    rgba(255, 226, 45, 0.556442645417542) 47%,
+    rgba(0, 255, 66, 0.5648460067620799) 100%
+  );
+}
+.navigation {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.active .icon {
+  color: red;
+}
+.active .admin {
+  color: red;
+}
+.icon {
+  padding: 5px;
+  width: fit-content;
+  height: fit-content;
+
+  font-size: 26px !important;
+  color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(255, 255, 255, 0.24);
+  border-radius: 5px;
+  box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.17),
+    0px 0px 17px 11px rgba(246, 244, 203, 0.2) inset;
+  transition: all 0.2s linear;
+
+  &:focus,
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+.home {
+  margin: 0;
+  font-size: 20px;
+  text-decoration: none;
+}
+.admin {
+  @extend .icon;
+  text-decoration: none;
+  font-size: 23px !important;
+}
+
+.exit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}

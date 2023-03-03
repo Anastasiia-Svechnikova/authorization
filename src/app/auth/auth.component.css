@@ -3,36 +3,41 @@
   height: 100vh;
   padding-top: 100px;
   background-color: white;
-  background-image: linear-gradient(157deg, rgba(255, 226, 45, 0.5564426454) 47%, rgba(0, 255, 66, 0.5648460068) 100%);
+  background-image: linear-gradient(
+    157deg,
+    rgba(255, 226, 45, 55.6%) 47%,
+    rgba(0, 255, 66, 56.5%) 100%
+  );
 }
 
 .welcome {
-  text-align: center;
   margin-top: 50px;
-  color: rgba(0, 0, 0, 0.6);
+  color: rgba(0, 0, 0, 60%);
   font-size: 30px;
+  text-align: center;
 }
 
 .wrapper {
   width: 400px;
   height: 300px;
   margin: 10% auto;
-  background-color: rgba(255, 255, 255, 0.24);
   border-radius: 5px;
-  box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.17), 0px 0px 17px 11px rgba(246, 244, 203, 0.2) inset;
+  background-color: rgba(255, 255, 255, 24%);
+  box-shadow: 0 0 9px 0 rgba(0, 0, 0, 17%),
+    0 0 17px 11px rgba(246, 244, 203, 20%) inset;
 }
 
 .form {
-  padding: 30px;
   display: flex;
   flex-direction: column;
+  padding: 30px;
 }
 
 .submit-btn {
   height: 50px;
-  font-size: 18px;
-  color: rgb(254, 253, 253);
-  background-color: rgba(14, 198, 63, 0.565);
   border: none;
   border-radius: 5px;
-}/*# sourceMappingURL=auth.component.css.map */
+  background-color: rgba(14, 198, 63, 56.5%);
+  color: rgb(254, 253, 253);
+  font-size: 18px;
+}

@@ -1,4 +1,15 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
 body {
   background-color: #fefafa;
-}/*# sourceMappingURL=styles.css.map */
+}

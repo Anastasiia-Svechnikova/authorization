@@ -10,6 +10,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './shared/material.module';
 import { HeaderComponent } from './shared/header/header.component';
 import { SiteLayoutComponent } from './shared/site-layout/site-layout.component';
+import { GraphComponent } from './dashboard/graph/graph.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,7 @@ import { SiteLayoutComponent } from './shared/site-layout/site-layout.component'
     DashboardComponent,
     HeaderComponent,
     SiteLayoutComponent,
+    GraphComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,6 +28,7 @@ import { SiteLayoutComponent } from './shared/site-layout/site-layout.component'
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
+    NgxChartsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

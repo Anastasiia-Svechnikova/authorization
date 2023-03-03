@@ -1,1 +1,28 @@
-<p>dashboard works!</p>
+<div class="grid">
+  <div
+    *ngFor="let item of data"
+    class="wrapper">
+    <mat-accordion>
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <!-- <mat-panel-title> This is the expansion title </mat-panel-title> -->
+          <mat-panel-description>
+            <div class="inner">
+              <img
+                class="image"
+                [src]="item.image_url" />
+              <h3 class="name">{{ item.name }}</h3>
+              <p class="resolved">
+                {{ item.users_resolved }} users resolved
+                <span [ngClass]="item.active ? 'active' : 'inactive'">{{
+                  item.active ? 'active' : 'inactive'
+                }}</span>
+              </p>
+            </div>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <app-graph [id]="4"></app-graph>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>

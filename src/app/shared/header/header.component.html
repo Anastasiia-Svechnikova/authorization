@@ -1,1 +1,38 @@
-<p>header works!</p>
+<div class="header">
+  <nav>
+    <ul class="navigation">
+      <li>
+        <a
+          routerLinkActive="active"
+          routerLink="/"
+          class="home"
+          aria-label="Home page">
+          <mat-icon
+            class="icon"
+            style="font-size: 20px">
+            home
+          </mat-icon>
+        </a>
+      </li>
+      <li>
+        <a
+          routerLinkActive="active"
+          routerLink="/admin"
+          class="admin"
+          aria-label="Home page">
+          Admin
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <button
+    class="exit"
+    aria-label="Logout">
+    <mat-icon
+      class="icon"
+      style="font-size: 20px">
+      exit_to_app
+    </mat-icon>
+  </button>
+</div>

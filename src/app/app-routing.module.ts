@@ -9,11 +9,15 @@ const routes: Routes = [
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
   {
-    path: 'dashboard',
+    path: '',
     component: SiteLayoutComponent,
     children: [
-      { path: 'user', component: DashboardComponent },
-      { path: 'admin', component: DashboardComponent },
+      { path: '', component: DashboardComponent },
+      {
+        path: 'admin',
+        loadChildren: () =>
+          import('./admin/admin.module').then((m) => m.AdminModule),
+      },
     ],
   },
 ];
