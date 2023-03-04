@@ -17,12 +17,9 @@
   gap: 20px;
 }
 
-.active .icon, .active .admin {
-  color: red;
-}
-
-.active .admin {
-  color: red;
+.active .icon, .active .admin,
+.active.admin {
+  color: rgb(70, 206, 70);
 }
 
 .icon, .admin {

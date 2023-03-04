@@ -20,12 +20,11 @@
   justify-content: center;
   gap: 20px;
 }
-.active .icon {
-  color: red;
+.active .icon,
+.active.admin {
+  color: rgb(70, 206, 70);
 }
-.active .admin {
-  color: red;
-}
+
 .icon {
   padding: 5px;
   width: fit-content;
