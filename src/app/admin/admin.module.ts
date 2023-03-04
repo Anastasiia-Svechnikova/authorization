@@ -14,11 +14,6 @@ const routes = [
 
 @NgModule({
   declarations: [AdminComponent],
-  imports: [
-    CommonModule,
-    MaterialModule,
-    EffectsModule.forFeature(),
-    RouterModule.forChild(routes),
-  ],
+  imports: [CommonModule, MaterialModule, RouterModule.forChild(routes)],
 })
 export class AdminModule {}

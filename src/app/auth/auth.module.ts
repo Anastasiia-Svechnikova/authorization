@@ -19,7 +19,6 @@ const routes = [
     CommonModule,
     ReactiveFormsModule,
     MaterialModule,
-    EffectsModule.forFeature(),
     RouterModule.forChild(routes),
   ],
 })
