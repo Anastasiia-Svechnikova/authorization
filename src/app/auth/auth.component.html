@@ -4,7 +4,7 @@
     <form
       class="form"
       [formGroup]="loginForm"
-      (ngSubmit)="(onSubmit)">
+      (ngSubmit)="onSubmit()">
       <mat-form-field
         color="accent"
         appearance="outline"
@@ -38,6 +38,7 @@
         </mat-error>
       </mat-form-field>
       <button
+        [disabled]="loginForm.invalid"
         class="submit-btn"
         type="submit">
         Log in

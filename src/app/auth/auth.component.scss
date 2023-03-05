@@ -38,4 +38,8 @@
   background-color: rgba(14, 198, 63, 0.565);
   border: none;
   border-radius: 5px;
+  cursor: pointer;
+  &[disabled] {
+    background-color: grey;
+  }
 }

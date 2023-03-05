@@ -9,3 +9,4 @@ export interface IApiLoginResponse {
   role: string;
   token: string;
 }
+export type localStorageUser = IApiLoginResponse | null;
