@@ -1,7 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import {
   AssessmentsList,
-  IGraph,
+  IGraphData,
   UsersList,
 } from '../../models/assessments.model';
 import { assessmentActions } from './actions';
@@ -11,20 +11,16 @@ export interface IAssessmentState {
   error: Error | null;
   assessments: AssessmentsList;
   users: UsersList;
-  graph: {
-    loading: boolean;
-    data: IGraph | null;
-  };
+  graphData: IGraphData[];
+  graphLoading: boolean;
 }
 const initialAssessmentState = {
   loading: false,
   error: null,
   assessments: [],
   users: [],
-  graph: {
-    loading: false,
-    data: null,
-  },
+  graphData: [],
+  graphLoading: false,
 };
 export const assessmentReducer = createReducer<IAssessmentState>(
   initialAssessmentState,
@@ -45,16 +41,18 @@ export const assessmentReducer = createReducer<IAssessmentState>(
     assessmentActions.loadGraph,
     (state): IAssessmentState => ({
       ...state,
-      graph: { loading: true, data: null },
+      graphLoading: true,
     }),
   ),
-  on(
-    assessmentActions.loadedGraph,
-    (state, { data }): IAssessmentState => ({
+  on(assessmentActions.loadedGraph, (state, { data, id }): IAssessmentState => {
+    const graphData = [...state.graphData];
+    graphData[id] = data;
+    return {
       ...state,
-      graph: { loading: false, data },
-    }),
-  ),
+      graphLoading: false,
+      graphData,
+    };
+  }),
   on(
     assessmentActions.loadUsers,
     (state): IAssessmentState => ({ ...state, loading: true, error: null }),

@@ -17,6 +17,8 @@ import { GraphComponent } from './dashboard/graph/graph.component';
 import { authReducer } from './_core/state/auth/reducer';
 import { authEffects } from './_core/state/auth/effects';
 import { AuthTokenInterceptor } from './_core/interceptors/authToken.interceptor';
+import { assessmentEffects } from './_core/state/assessments/effects';
+import { assessmentReducer } from './_core/state/assessments/reducer';
 
 @NgModule({
   declarations: [
@@ -29,8 +31,8 @@ import { AuthTokenInterceptor } from './_core/interceptors/authToken.interceptor
   imports: [
     BrowserModule,
     HttpClientModule,
-    StoreModule.forRoot({ auth: authReducer }),
-    EffectsModule.forRoot([authEffects]),
+    StoreModule.forRoot({ auth: authReducer, assessments: assessmentReducer }),
+    EffectsModule.forRoot([authEffects, assessmentEffects]),
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { Store } from '@ngrx/store';
 import { catchError, exhaustMap, map, of } from 'rxjs';
 import { AuthService } from '../../api/auth.service';
 import { authActions } from './actions';
@@ -10,11 +9,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable()
 export class authEffects {
-  constructor(
-    private actions$: Actions,
-    private store: Store,
-    private authService: AuthService,
-  ) {}
+  constructor(private actions$: Actions, private authService: AuthService) {}
 
   login$ = createEffect(() => {
     return this.actions$.pipe(

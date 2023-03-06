@@ -1,11 +1,10 @@
 <div class="grid">
   <div
-    *ngFor="let item of data"
+    *ngFor="let item of assessments$ | async"
     class="wrapper">
     <mat-accordion>
       <mat-expansion-panel hideToggle>
         <mat-expansion-panel-header>
-          <!-- <mat-panel-title> This is the expansion title </mat-panel-title> -->
           <mat-panel-description>
             <div class="inner">
               <img
@@ -21,7 +20,9 @@
             </div>
           </mat-panel-description>
         </mat-expansion-panel-header>
-        <app-graph [id]="4"></app-graph>
+        <ng-template matExpansionPanelContent>
+          <app-graph [id]="item.id"></app-graph>
+        </ng-template>
       </mat-expansion-panel>
     </mat-accordion>
   </div>

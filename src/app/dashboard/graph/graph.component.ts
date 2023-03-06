@@ -1,30 +1,18 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Color, ScaleType } from '@swimlane/ngx-charts';
-
-const data = {
-  data: {
-    agreeableness: 11.234,
-    drive: 20.789,
-    luck: 12.345,
-    openness: 25.456,
-  },
-  type: 'bar',
-};
+import { map } from 'rxjs';
+import { assessmentActions } from 'src/app/_core/state/assessments/actions';
+import { selectGraphData } from 'src/app/_core/state/assessments/selectors';
+import { transformGraphData } from './transformGraphData';
 
 @Component({
   selector: 'app-graph',
   templateUrl: './graph.component.html',
   styleUrls: ['./graph.component.scss'],
 })
-export class GraphComponent {
+export class GraphComponent implements OnInit {
   @Input() id!: number;
-
-  saleData = [
-    { name: 'Agreeableness', value: 11.234 },
-    { name: 'Drive', value: 20.789 },
-    { name: 'Luck', value: 12.345 },
-    { name: 'Openness', value: 25.456 },
-  ];
 
   colorScheme: Color = {
     name: 'myScheme',
@@ -32,4 +20,19 @@ export class GraphComponent {
     group: ScaleType.Ordinal,
     domain: ['#f9d048', '#f99848', '#65e665', '#70d2bd'],
   };
+  graphData$ = this.store.select(selectGraphData).pipe(
+    map((data) => {
+      const selectedGraph = data[this.id];
+      if (selectedGraph) {
+        return transformGraphData(selectedGraph);
+      }
+      return null;
+    }),
+  );
+
+  constructor(private store: Store) {}
+
+  ngOnInit(): void {
+    this.store.dispatch(assessmentActions.loadGraph({ id: this.id }));
+  }
 }

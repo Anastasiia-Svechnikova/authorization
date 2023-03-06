@@ -6,6 +6,10 @@ export interface IAssessment {
   image_url: string;
 }
 export type AssessmentsList = IAssessment[];
+export interface IGraphApiResponse {
+  data: IGraphData;
+  type: string;
+}
 export interface IGraphData {
   agreeableness: number;
   drive: number;
@@ -13,10 +17,12 @@ export interface IGraphData {
   openness: number;
 }
 
-export interface IGraph {
-  data: IGraphData;
-  type: string;
+interface GraphItem {
+  name: string;
+  value: number;
 }
+export type IGraphDataForChart = GraphItem[];
+
 export interface IUser {
   name: string;
   lastName: string;

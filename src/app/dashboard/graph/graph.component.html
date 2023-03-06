@@ -1,6 +1,7 @@
 <ngx-charts-bar-horizontal
+  *ngIf="graphData$ | async"
   [view]="[320, 180]"
-  [results]="saleData"
+  [results]="graphData$ | async"
   [scheme]="colorScheme"
   [legend]="false"
   [showXAxisLabel]="true"

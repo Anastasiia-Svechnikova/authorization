@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 import {
   AssessmentsList,
-  IGraph,
+  IGraphApiResponse,
+  IGraphData,
   UsersList,
 } from '../models/assessments.model';
 
@@ -17,10 +18,10 @@ export class AssessmentService {
   public getAssessments(): Observable<AssessmentsList> {
     return this.http.get<AssessmentsList>(`${this.API_URL}/userassessments`);
   }
-  public getGraph(id: number): Observable<IGraph> {
-    return this.http.get<IGraph>(
-      `${this.API_URL}/userassessments/graph/?id=${id}`,
-    );
+  public getGraph(id: number): Observable<IGraphData> {
+    return this.http
+      .get<IGraphApiResponse>(`${this.API_URL}/userassessments/graph/?id=${id}`)
+      .pipe(map(({ data }) => data));
   }
   public getUsers(): Observable<UsersList> {
     return this.http.get<UsersList>(`${this.API_URL}/users`);
