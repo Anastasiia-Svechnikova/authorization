@@ -1,23 +1,23 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import { IInitialAuthState } from './reducer';
+import { IAuthState } from './reducer';
 
-const selectAuthFeature = createFeatureSelector<IInitialAuthState>('auth');
+const selectAuthFeature = createFeatureSelector<IAuthState>('auth');
 export const selectUser = createSelector(
   selectAuthFeature,
-  (state: IInitialAuthState) => state.user,
+  (state: IAuthState) => state.user,
 );
 export const selectLoading = createSelector(
   selectAuthFeature,
-  (state: IInitialAuthState) => state.loading,
+  (state: IAuthState) => state.loading,
 );
 export const selectError = createSelector(
   selectAuthFeature,
-  (state: IInitialAuthState) => state.error,
+  (state: IAuthState) => state.error,
 );
 export const selectToken = createSelector(
   selectAuthFeature,
-  (state: IInitialAuthState) => {
+  (state: IAuthState) => {
     return state.user ? state.user?.token : null;
   },
 );
