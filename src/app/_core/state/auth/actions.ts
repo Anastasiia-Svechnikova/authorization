@@ -7,8 +7,9 @@ export const authActions = createActionGroup({
   events: {
     'Login start': props<{ user: IUser }>(),
     'Login success': props<{ user: IApiLoginResponse }>(),
+    'Auto Login': emptyProps(),
     'Logout start': emptyProps(),
     'Logout success': emptyProps(),
-    Error: props<{ error: Error }>(),
+    'Auth error': props<{ error: Error }>(),
   },
 });

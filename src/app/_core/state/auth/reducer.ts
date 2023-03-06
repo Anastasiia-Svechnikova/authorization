@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { createReducer, on } from '@ngrx/store';
 
 import { IApiLoginResponse } from '../../models/auth.model';
@@ -37,7 +38,7 @@ export const authReducer = createReducer(
     loading: false,
     user: null,
   })),
-  on(authActions.error, (state, { error }) => ({
+  on(authActions.authError, (state, { error }) => ({
     ...state,
     loading: false,
     error,

@@ -15,3 +15,9 @@ export const selectError = createSelector(
   selectAuthFeature,
   (state: IInitialAuthState) => state.error,
 );
+export const selectToken = createSelector(
+  selectAuthFeature,
+  (state: IInitialAuthState) => {
+    return state.user ? state.user?.token : null;
+  },
+);

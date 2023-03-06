@@ -6,6 +6,7 @@ import { AuthService } from '../../api/auth.service';
 import { authActions } from './actions';
 
 import { IApiLoginResponse } from '../../models/auth.model';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable()
 export class authEffects {
@@ -25,8 +26,8 @@ export class authEffects {
             this.authService.saveUserToStorage(response);
             return authActions.loginSuccess({ user: response });
           }),
-          catchError((errResp) => {
-            return of(authActions.error(errResp));
+          catchError((errResp: HttpErrorResponse) => {
+            return of(authActions.authError(errResp));
           }),
         );
       }),
@@ -39,6 +40,15 @@ export class authEffects {
       map(() => {
         this.authService.logout();
         return authActions.logoutSuccess();
+      }),
+    );
+  });
+  autoLogin$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(authActions.autoLogin),
+      map(() => {
+        const user = this.authService.getUserFromStorage();
+        return authActions.loginSuccess({ user });
       }),
     );
   });
