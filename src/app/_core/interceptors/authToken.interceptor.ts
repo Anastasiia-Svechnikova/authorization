@@ -4,9 +4,9 @@ import {
   HttpInterceptor,
   HttpRequest,
 } from '@angular/common/http';
+import { exhaustMap, Observable, take } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { exhaustMap, Observable, take } from 'rxjs';
 import { selectToken } from '../state/auth/selectors';
 
 @Injectable()
