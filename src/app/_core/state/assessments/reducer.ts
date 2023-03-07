@@ -8,7 +8,7 @@ import { assessmentActions } from './actions';
 
 export interface IAssessmentState {
   loading: boolean;
-  error: Error | null;
+  error: string | null;
   assessments: AssessmentsList;
   users: UsersList;
   graphData: IGraphData[];
@@ -68,6 +68,9 @@ export const assessmentReducer = createReducer<IAssessmentState>(
   ),
   on(
     assessmentActions.assessmentError,
-    (state, { error }): IAssessmentState => ({ ...state, error }),
+
+    (state, { error }): IAssessmentState => {
+      return { ...state, error: error };
+    },
   ),
 );

@@ -25,7 +25,9 @@ export class assessmentEffects {
             return assessmentActions.loadedAssessments({ data });
           }),
           catchError((errResp: HttpErrorResponse) => {
-            return of(assessmentActions.assessmentError(errResp));
+            return of(
+              assessmentActions.assessmentError({ error: errResp.message }),
+            );
           }),
         );
       }),
@@ -40,7 +42,9 @@ export class assessmentEffects {
             return assessmentActions.loadedGraph({ data, id });
           }),
           catchError((errResp: HttpErrorResponse) => {
-            return of(assessmentActions.assessmentError(errResp));
+            return of(
+              assessmentActions.assessmentError({ error: errResp.message }),
+            );
           }),
         );
       }),
@@ -55,7 +59,9 @@ export class assessmentEffects {
             return assessmentActions.loadedUsers({ data });
           }),
           catchError((errResp: HttpErrorResponse) => {
-            return of(assessmentActions.assessmentError(errResp));
+            return of(
+              assessmentActions.assessmentError({ error: errResp.message }),
+            );
           }),
         );
       }),

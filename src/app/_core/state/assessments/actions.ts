@@ -14,6 +14,6 @@ export const assessmentActions = createActionGroup({
     'Loaded graph': props<{ data: IGraphData; id: number }>(),
     'Load users': emptyProps(),
     'Loaded users': props<{ data: UsersList }>(),
-    'Assessment error': props<{ error: Error }>(),
+    'Assessment error': props<{ error: string }>(),
   },
 });

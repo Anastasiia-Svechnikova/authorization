@@ -15,7 +15,7 @@
           </mat-icon>
         </a>
       </li>
-      <li>
+      <li *ngIf="isAdmin$ | async">
         <a
           routerLinkActive="active"
           routerLink="/admin"

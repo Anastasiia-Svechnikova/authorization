@@ -6,19 +6,24 @@ import { authActions } from './actions';
 
 import { IApiLoginResponse } from '../../models/auth.model';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class authEffects {
-  constructor(private actions$: Actions, private authService: AuthService) {}
+  constructor(
+    private actions$: Actions,
+    private authService: AuthService,
+    private router: Router,
+  ) {}
 
   login$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(authActions.loginStart),
       exhaustMap(({ user }) => {
-        console.log(user);
         return this.authService.login(user).pipe(
           map((response: IApiLoginResponse) => {
             this.authService.saveUserToStorage(response);
+            this.router.navigate(['/']);
             return authActions.loginSuccess({ user: response });
           }),
           catchError((errResp: HttpErrorResponse) => {
@@ -34,6 +39,7 @@ export class authEffects {
       ofType(authActions.logoutStart),
       map(() => {
         this.authService.logout();
+        this.router.navigate(['/login']);
         return authActions.logoutSuccess();
       }),
     );

@@ -21,3 +21,12 @@ export const selectToken = createSelector(
     return state.user ? state.user?.token : null;
   },
 );
+export const selectIsAdmin = createSelector(
+  selectAuthFeature,
+  (state: IAuthState) => {
+    if (state.user) {
+      return state.user.role === 'Admin' ? true : false;
+    }
+    return false;
+  },
+);
