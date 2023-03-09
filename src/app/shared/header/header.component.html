@@ -7,10 +7,12 @@
           [routerLinkActiveOptions]="{ exact: true }"
           routerLink="/"
           class="home"
-          aria-label="Home page">
+          aria-label="Home page"
+        >
           <mat-icon
             class="icon"
-            style="font-size: 20px">
+            style="font-size: 20px"
+          >
             home
           </mat-icon>
         </a>
@@ -20,7 +22,8 @@
           routerLinkActive="active"
           routerLink="/admin"
           class="admin"
-          aria-label="Home page">
+          aria-label="Home page"
+        >
           Admin
         </a>
       </li>
@@ -31,10 +34,12 @@
     type="button"
     class="exit"
     aria-label="Logout"
-    (click)="onLogout()">
+    (click)="onLogout()"
+  >
     <mat-icon
       class="icon"
-      style="font-size: 20px">
+      style="font-size: 20px"
+    >
       exit_to_app
     </mat-icon>
   </button>

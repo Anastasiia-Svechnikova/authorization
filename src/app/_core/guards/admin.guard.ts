@@ -12,7 +12,7 @@ export class AdminGuard implements CanActivate {
 
   canActivate(): boolean | Observable<boolean> | Promise<boolean> {
     return this.store.select(selectIsAdmin).pipe(
-      tap((result) => {
+      tap((result: boolean) => {
         if (!result) {
           this.router.navigate(['/']);
         }

@@ -10,6 +10,7 @@ import { Store } from '@ngrx/store';
 
 import { selectToken } from '../state/auth/selectors';
 import { AUTH_HEADER } from '../constants/constants';
+import { Token } from '../models/auth.model';
 
 @Injectable()
 export class AuthTokenInterceptor implements HttpInterceptor {
@@ -20,7 +21,7 @@ export class AuthTokenInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<U>> {
     return this.store.select(selectToken).pipe(
       take(1),
-      exhaustMap((token) => {
+      exhaustMap((token: Token) => {
         if (!token) {
           return next.handle(req);
         }

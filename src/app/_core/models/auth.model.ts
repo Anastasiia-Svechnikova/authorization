@@ -6,6 +6,7 @@ export enum Role {
   admin = 'Admin',
   user = 'User',
 }
+export type Token = string | null;
 
 export interface IApiLoginResponse {
   first_name: string;

@@ -10,6 +10,7 @@ import {
 } from '@angular/router';
 
 import { selectToken } from '../state/auth/selectors';
+import { Token } from '../models/auth.model';
 
 @Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate {
@@ -20,7 +21,7 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot,
   ): boolean | Observable<boolean> | Promise<boolean> {
     return this.store.select(selectToken).pipe(
-      map((token) => {
+      map((token: Token) => {
         if (!token && state.url !== '/login') {
           this.router.navigate(['/login']);
           return false;
