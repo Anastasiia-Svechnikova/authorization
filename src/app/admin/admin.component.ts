@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+
 import { assessmentActions } from '../_core/state/assessments/actions';
 import {
   selectError,
@@ -16,6 +17,7 @@ export class AdminComponent implements OnInit {
   users$ = this.store.select(selectUsers);
   error$ = this.store.select(selectError);
   loading$ = this.store.select(selectLoading);
+
   constructor(private store: Store) {}
   ngOnInit(): void {
     this.store.dispatch(assessmentActions.loadUsers());

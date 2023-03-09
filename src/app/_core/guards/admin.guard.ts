@@ -1,9 +1,9 @@
 import { tap } from 'rxjs/operators';
-
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
+
 import { selectIsAdmin } from '../state/auth/selectors';
 
 @Injectable({ providedIn: 'root' })

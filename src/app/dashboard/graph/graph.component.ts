@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Color, ScaleType } from '@swimlane/ngx-charts';
 import { map } from 'rxjs';
+
+import { CHART_PALETTE } from 'src/app/_core/constants/constants';
 import { assessmentActions } from 'src/app/_core/state/assessments/actions';
 import {
   selectGraphData,
@@ -22,7 +24,7 @@ export class GraphComponent implements OnInit {
     name: 'myScheme',
     selectable: true,
     group: ScaleType.Ordinal,
-    domain: ['#f9d048', '#f99848', '#65e665', '#70d2bd'],
+    domain: CHART_PALETTE,
   };
   graphData$ = this.store.select(selectGraphData).pipe(
     map((data) => {

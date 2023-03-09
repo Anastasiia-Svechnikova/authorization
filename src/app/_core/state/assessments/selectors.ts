@@ -1,8 +1,11 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
+import { ASSESSMENTS_STATE_NAME } from '../../constants/constants';
 import { IAssessmentState } from './reducer';
 
-const selectFeature = createFeatureSelector<IAssessmentState>('assessments');
+const selectFeature = createFeatureSelector<IAssessmentState>(
+  ASSESSMENTS_STATE_NAME,
+);
 export const selectAssessments = createSelector(
   selectFeature,
   (state: IAssessmentState) => state.assessments,

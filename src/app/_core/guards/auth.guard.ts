@@ -1,5 +1,4 @@
 import { map } from 'rxjs/operators';
-
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
@@ -9,6 +8,7 @@ import {
   Router,
   RouterStateSnapshot,
 } from '@angular/router';
+
 import { selectToken } from '../state/auth/selectors';
 
 @Injectable({ providedIn: 'root' })

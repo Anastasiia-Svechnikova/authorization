@@ -1,8 +1,10 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
+import { AUTH_STATE_NAME } from '../../constants/constants';
+import { Role } from '../../models/auth.model';
 import { IAuthState } from './reducer';
 
-const selectAuthFeature = createFeatureSelector<IAuthState>('auth');
+const selectAuthFeature = createFeatureSelector<IAuthState>(AUTH_STATE_NAME);
 export const selectUser = createSelector(
   selectAuthFeature,
   (state: IAuthState) => state.user,
@@ -25,7 +27,7 @@ export const selectIsAdmin = createSelector(
   selectAuthFeature,
   (state: IAuthState) => {
     if (state.user) {
-      return state.user.role === 'Admin' ? true : false;
+      return state.user.role === Role.admin ? true : false;
     }
     return false;
   },

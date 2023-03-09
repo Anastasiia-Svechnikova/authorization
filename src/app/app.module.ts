@@ -9,30 +9,21 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { appState } from './_core/state/app-state';
 import { MaterialModule } from './shared/material.module';
 import { HeaderComponent } from './shared/header/header.component';
 import { SiteLayoutComponent } from './shared/site-layout/site-layout.component';
-import { GraphComponent } from './dashboard/graph/graph.component';
-import { authReducer } from './_core/state/auth/reducer';
 import { authEffects } from './_core/state/auth/effects';
 import { AuthTokenInterceptor } from './_core/interceptors/authToken.interceptor';
 import { assessmentEffects } from './_core/state/assessments/effects';
-import { assessmentReducer } from './_core/state/assessments/reducer';
 import { SharedModule } from './shared/shared.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    SiteLayoutComponent,
-    DashboardComponent,
-    GraphComponent,
-  ],
+  declarations: [AppComponent, HeaderComponent, SiteLayoutComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
-    StoreModule.forRoot({ auth: authReducer, assessments: assessmentReducer }),
+    StoreModule.forRoot(appState),
     EffectsModule.forRoot([authEffects, assessmentEffects]),
     AppRoutingModule,
     BrowserAnimationsModule,
