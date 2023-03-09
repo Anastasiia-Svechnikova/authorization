@@ -1,7 +1,6 @@
 <div
   *ngIf="(loading$ | async) || (error$ | async); else content"
-  class="outer"
->
+  class="outer">
   <app-loader *ngIf="loading$ | async"></app-loader>
   <app-error *ngIf="error$ | async"></app-error>
 </div>
@@ -10,8 +9,7 @@
     <h2 class="title">All Users:</h2>
     <mat-card
       *ngFor="let user of users$ | async"
-      class="card"
-    >
+      class="card">
       <mat-card-content class="user">
         <span class="name">{{ user.name }} {{ user.lastName }}</span>
         <span>{{ user.education }}</span>

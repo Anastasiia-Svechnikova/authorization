@@ -4,17 +4,11 @@
       <li>
         <a
           routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }"
           routerLink="/"
           class="home"
           aria-label="Home page"
-        >
-          <mat-icon
-            class="icon"
-            style="font-size: 20px"
-          >
-            home
-          </mat-icon>
+          [routerLinkActiveOptions]="{ exact: true }">
+          <mat-icon class="icon"> home </mat-icon>
         </a>
       </li>
       <li *ngIf="isAdmin$ | async">
@@ -22,8 +16,7 @@
           routerLinkActive="active"
           routerLink="/admin"
           class="admin"
-          aria-label="Home page"
-        >
+          aria-label="Home page">
           Admin
         </a>
       </li>
@@ -34,13 +27,7 @@
     type="button"
     class="exit"
     aria-label="Logout"
-    (click)="onLogout()"
-  >
-    <mat-icon
-      class="icon"
-      style="font-size: 20px"
-    >
-      exit_to_app
-    </mat-icon>
+    (click)="onLogout()">
+    <mat-icon class="icon"> exit_to_app </mat-icon>
   </button>
 </div>
