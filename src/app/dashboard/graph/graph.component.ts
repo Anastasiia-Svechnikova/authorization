@@ -3,7 +3,10 @@ import { Store } from '@ngrx/store';
 import { Color, ScaleType } from '@swimlane/ngx-charts';
 import { map } from 'rxjs';
 import { assessmentActions } from 'src/app/_core/state/assessments/actions';
-import { selectGraphData } from 'src/app/_core/state/assessments/selectors';
+import {
+  selectGraphData,
+  selectGraphLoading,
+} from 'src/app/_core/state/assessments/selectors';
 import { transformGraphData } from './transformGraphData';
 
 @Component({
@@ -13,6 +16,7 @@ import { transformGraphData } from './transformGraphData';
 })
 export class GraphComponent implements OnInit {
   @Input() id!: number;
+  loading$ = this.store.select(selectGraphLoading);
 
   colorScheme: Color = {
     name: 'myScheme',

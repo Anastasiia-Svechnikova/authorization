@@ -3,25 +3,33 @@ import { map } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
+import {
+  ActivatedRouteSnapshot,
+  CanActivate,
+  Router,
+  RouterStateSnapshot,
+} from '@angular/router';
 import { selectToken } from '../state/auth/selectors';
 
 @Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate {
   constructor(private store: Store, private router: Router) {}
 
-  canActivate(): boolean | Observable<boolean> | Promise<boolean> {
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot,
+  ): boolean | Observable<boolean> | Promise<boolean> {
     return this.store.select(selectToken).pipe(
       map((token) => {
-        if (!token) {
+        if (!token && state.url !== '/login') {
           this.router.navigate(['/login']);
+          return false;
+        } else if (token && state.url === '/login') {
+          this.router.navigate(['/']);
           return false;
         }
         return true;
       }),
     );
-  }
-  canActivateChild(): boolean | Observable<boolean> | Promise<boolean> {
-    return this.canActivate();
   }
 }

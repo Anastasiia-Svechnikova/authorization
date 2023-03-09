@@ -20,10 +20,8 @@ export class AuthTokenInterceptor implements HttpInterceptor {
       take(1),
       exhaustMap((token) => {
         if (!token) {
-          console.log('no token');
           return next.handle(req);
         }
-        console.log('yes token', token);
         const processedReq = req.clone({
           setHeaders: {
             'X-Token': token,

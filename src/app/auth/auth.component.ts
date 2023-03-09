@@ -20,7 +20,6 @@ export class AuthComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(this.loginForm.value);
     this.store.dispatch(authActions.loginStart({ user: this.loginForm.value }));
   }
 

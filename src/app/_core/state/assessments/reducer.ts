@@ -12,7 +12,7 @@ export interface IAssessmentState {
   assessments: AssessmentsList;
   users: UsersList;
   graphData: IGraphData[];
-  graphLoading: boolean;
+  graphLoading: boolean | number;
 }
 const initialAssessmentState = {
   loading: false,
@@ -39,9 +39,9 @@ export const assessmentReducer = createReducer<IAssessmentState>(
   ),
   on(
     assessmentActions.loadGraph,
-    (state): IAssessmentState => ({
+    (state, { id }): IAssessmentState => ({
       ...state,
-      graphLoading: true,
+      graphLoading: id,
     }),
   ),
   on(assessmentActions.loadedGraph, (state, { data, id }): IAssessmentState => {
@@ -68,9 +68,8 @@ export const assessmentReducer = createReducer<IAssessmentState>(
   ),
   on(
     assessmentActions.assessmentError,
-
     (state, { error }): IAssessmentState => {
-      return { ...state, error: error };
+      return { ...state, error: error, loading: false };
     },
   ),
 );

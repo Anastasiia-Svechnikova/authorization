@@ -19,13 +19,14 @@ import { authEffects } from './_core/state/auth/effects';
 import { AuthTokenInterceptor } from './_core/interceptors/authToken.interceptor';
 import { assessmentEffects } from './_core/state/assessments/effects';
 import { assessmentReducer } from './_core/state/assessments/reducer';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
     HeaderComponent,
     SiteLayoutComponent,
+    DashboardComponent,
     GraphComponent,
   ],
   imports: [
@@ -36,6 +37,7 @@ import { assessmentReducer } from './_core/state/assessments/reducer';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
+    SharedModule,
     NgxChartsModule,
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
   ],

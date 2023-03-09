@@ -16,26 +16,13 @@ export const selectGraphData = createSelector(
   (state: IAssessmentState) => state.graphData,
 );
 
-export const selectGraphById = (id: number) =>
-  createSelector(
-    selectFeature,
-    (state: IAssessmentState) => state.graphData[id],
-  );
-
-// const selectCountMultiplied = (props: { multiplier: number }) =>
-//   // 👍 `count` knows that it's a number
-//   createSelector(selectCount, (count) => {
-//     logs.push(`[selectCountMultiplied] ${count} * ${props.multiplier}`);
-//     return count * props.multiplier;
-//   });
-
-export const selectGraphLoading = createSelector(
-  selectFeature,
-  (state: IAssessmentState) => state.graphLoading,
-);
 export const selectLoading = createSelector(
   selectFeature,
   (state: IAssessmentState) => state.loading,
+);
+export const selectGraphLoading = createSelector(
+  selectFeature,
+  (state: IAssessmentState) => state.graphLoading,
 );
 export const selectError = createSelector(
   selectFeature,

@@ -1,3 +1,7 @@
+.outer {
+  width: fit-content;
+  margin: 100px auto;
+}
 .grid {
   display: grid;
   grid-template-columns: 1fr;

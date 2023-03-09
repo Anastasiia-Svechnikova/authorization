@@ -1,29 +1,37 @@
-<div class="grid">
-  <div
-    *ngFor="let item of assessments$ | async"
-    class="wrapper">
-    <mat-accordion>
-      <mat-expansion-panel hideToggle>
-        <mat-expansion-panel-header>
-          <mat-panel-description>
-            <div class="inner">
-              <img
-                class="image"
-                [src]="item.image_url" />
-              <h3 class="name">{{ item.name }}</h3>
-              <p class="resolved">
-                {{ item.users_resolved }} users resolved
-                <span [ngClass]="item.active ? 'active' : 'inactive'">{{
-                  item.active ? 'active' : 'inactive'
-                }}</span>
-              </p>
-            </div>
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <ng-template matExpansionPanelContent>
-          <app-graph [id]="item.id"></app-graph>
-        </ng-template>
-      </mat-expansion-panel>
-    </mat-accordion>
-  </div>
+<div
+  *ngIf="(loading$ | async) || (error$ | async); else content"
+  class="outer">
+  <app-loader *ngIf="loading$ | async"></app-loader>
+  <app-error *ngIf="error$ | async"></app-error>
 </div>
+<ng-template #content>
+  <div class="grid">
+    <div
+      *ngFor="let item of assessments$ | async"
+      class="wrapper">
+      <mat-accordion>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-description>
+              <div class="inner">
+                <img
+                  class="image"
+                  [src]="item.image_url" />
+                <h3 class="name">{{ item.name }}</h3>
+                <p class="resolved">
+                  {{ item.users_resolved }} users resolved
+                  <span [ngClass]="item.active ? 'active' : 'inactive'">{{
+                    item.active ? 'active' : 'inactive'
+                  }}</span>
+                </p>
+              </div>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <ng-template matExpansionPanelContent>
+            <app-graph [id]="item.id"></app-graph>
+          </ng-template>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div>
+</ng-template>

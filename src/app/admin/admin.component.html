@@ -1,14 +1,22 @@
-<div class="wrapper">
-  <h2 class="title">All Users:</h2>
-  <mat-card
-    class="card"
-    *ngFor="let user of users$ | async">
-    <mat-card-content class="user">
-      <span class="name">{{ user.name }} {{ user.lastName }}</span>
-      <span>{{ user.education }}</span>
-      <span>{{ user.role }}</span>
-      <span>{{ user.dateOfBirth }}</span>
-      <span>{{ user.position }}</span>
-    </mat-card-content>
-  </mat-card>
+<div
+  *ngIf="(loading$ | async) || (error$ | async); else content"
+  class="outer">
+  <app-loader *ngIf="loading$ | async"></app-loader>
+  <app-error *ngIf="error$ | async"></app-error>
 </div>
+<ng-template #content>
+  <div class="wrapper">
+    <h2 class="title">All Users:</h2>
+    <mat-card
+      class="card"
+      *ngFor="let user of users$ | async">
+      <mat-card-content class="user">
+        <span class="name">{{ user.name }} {{ user.lastName }}</span>
+        <span>{{ user.education }}</span>
+        <span>{{ user.role }}</span>
+        <span>{{ user.dateOfBirth }}</span>
+        <span>{{ user.position }}</span>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</ng-template>
