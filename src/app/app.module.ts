@@ -14,9 +14,10 @@ import { MaterialModule } from './shared/material.module';
 import { HeaderComponent } from './shared/header/header.component';
 import { SiteLayoutComponent } from './shared/site-layout/site-layout.component';
 import { authEffects } from './_core/state/auth/effects';
-import { AuthTokenInterceptor } from './_core/interceptors/authToken.interceptor';
+
 import { assessmentEffects } from './_core/state/assessments/effects';
 import { SharedModule } from './shared/shared.module';
+import { AuthTokenInterceptor } from './_core/interceptors/auth-token.interceptor';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, SiteLayoutComponent],

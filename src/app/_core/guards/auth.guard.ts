@@ -1,4 +1,4 @@
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
@@ -20,16 +20,16 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,
   ): boolean | Observable<boolean> | Promise<boolean> {
+    const isLoginRoute = state.url === '/login';
     return this.store.select(selectToken).pipe(
       map((token: Token) => {
-        if (!token && state.url !== '/login') {
-          this.router.navigate(['/login']);
-          return false;
-        } else if (token && state.url === '/login') {
-          this.router.navigate(['/']);
-          return false;
+        return (token && !isLoginRoute) || (!token && isLoginRoute);
+      }),
+      tap((result: boolean) => {
+        if (!result) {
+          const navigateTo = isLoginRoute ? '/' : '/login';
+          this.router.navigate([navigateTo]);
         }
-        return true;
       }),
     );
   }

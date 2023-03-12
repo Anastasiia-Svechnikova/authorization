@@ -21,7 +21,9 @@ export class AssessmentService {
   }
   public getGraph(id: number): Observable<IGraphData> {
     return this.http
-      .get<IGraphApiResponse>(`${this.API_URL}/userassessments/graph/?id=${id}`)
+      .get<IGraphApiResponse>(`${this.API_URL}/userassessments/graph`, {
+        params: { id },
+      })
       .pipe(map(({ data }) => data));
   }
   public getUsers(): Observable<UsersList> {

@@ -17,11 +17,11 @@ export interface IGraphData {
   openness: number;
 }
 
-interface GraphItem {
+interface IGraphItem {
   name: string;
   value: number;
 }
-export type IGraphDataForChart = GraphItem[];
+export type IGraphDataForChart = IGraphItem[];
 
 export interface IUser {
   name: string;

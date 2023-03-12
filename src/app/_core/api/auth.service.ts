@@ -30,4 +30,8 @@ export class AuthService {
     const parsedUser = user && JSON.parse(user);
     return parsedUser;
   }
+  public getToken(): string {
+    const user = this.getUserFromStorage();
+    return user && user.token;
+  }
 }
