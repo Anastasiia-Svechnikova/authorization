@@ -8,7 +8,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { _CoreModule } from './_core/_core.module';
 import { AuthModule } from './auth/auth.module';
 import { SharedModule } from './shared/shared.module';
-import { MaterialModule } from './shared/material.module';
 import { HeaderComponent } from './shared/header/header.component';
 import { SiteLayoutComponent } from './shared/site-layout/site-layout.component';
 
@@ -20,7 +19,6 @@ import { SiteLayoutComponent } from './shared/site-layout/site-layout.component'
     AppRoutingModule,
     BrowserAnimationsModule,
     _CoreModule,
-    MaterialModule,
     SharedModule,
     AuthModule,
   ],

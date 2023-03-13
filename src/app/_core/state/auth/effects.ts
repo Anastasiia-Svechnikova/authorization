@@ -4,7 +4,7 @@ import { catchError, exhaustMap, map, of } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 
-import { AuthService } from '../../api/auth.service';
+import { AuthService } from '../../../auth/auth.service';
 import { authActions } from './actions';
 import { IApiLoginResponse } from '../../models/auth.model';
 

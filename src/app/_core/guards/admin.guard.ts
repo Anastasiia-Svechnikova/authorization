@@ -2,10 +2,10 @@ import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 
-import { AuthService } from '../api/auth.service';
+import { AuthService } from '../../auth/auth.service';
 import { Role } from '../models/auth.model';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class AdminGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 

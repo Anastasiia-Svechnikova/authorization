@@ -7,7 +7,7 @@ import {
   IApiLoginResponse,
   IUser,
   localStorageUser,
-} from '../models/auth.model';
+} from '../_core/models/auth.model';
 
 @Injectable({
   providedIn: 'root',

@@ -10,9 +10,7 @@ import {
   UsersList,
 } from '../models/assessments.model';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class AssessmentService {
   private API_URL = environment.apiUrl;
   constructor(private http: HttpClient) {}
