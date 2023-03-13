@@ -34,4 +34,8 @@ export class AuthService {
     const user = this.getUserFromStorage();
     return user && user.token;
   }
+  public getRole(): string {
+    const user = this.getUserFromStorage();
+    return user && user.role;
+  }
 }
