@@ -21,7 +21,7 @@ interface IGraphItem {
   name: string;
   value: number;
 }
-export type IGraphDataForChart = IGraphItem[];
+export type GraphDataForChart = IGraphItem[];
 
 export interface IUser {
   name: string;
