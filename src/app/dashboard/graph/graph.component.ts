@@ -1,35 +1,38 @@
-import { Component, Input } from '@angular/core';
-import { Color, ScaleType } from '@swimlane/ngx-charts';
+import { Component, Input, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { map } from 'rxjs';
 
-const data = {
-  data: {
-    agreeableness: 11.234,
-    drive: 20.789,
-    luck: 12.345,
-    openness: 25.456,
-  },
-  type: 'bar',
-};
+import { CHART_PARAMS } from 'src/app/_core/constants/constants';
+import { assessmentActions } from 'src/app/_core/state/assessments/actions';
+import {
+  selectGraphData,
+  selectGraphLoading,
+} from 'src/app/_core/state/assessments/selectors';
+import { transformGraphData } from './transform-graph-data';
 
 @Component({
   selector: 'app-graph',
   templateUrl: './graph.component.html',
   styleUrls: ['./graph.component.scss'],
 })
-export class GraphComponent {
+export class GraphComponent implements OnInit {
   @Input() id!: number;
+  loading$ = this.store.select(selectGraphLoading);
 
-  saleData = [
-    { name: 'Agreeableness', value: 11.234 },
-    { name: 'Drive', value: 20.789 },
-    { name: 'Luck', value: 12.345 },
-    { name: 'Openness', value: 25.456 },
-  ];
+  colorScheme = CHART_PARAMS;
+  graphData$ = this.store.select(selectGraphData).pipe(
+    map((data) => {
+      const selectedGraph = data[this.id];
+      if (selectedGraph) {
+        return transformGraphData(selectedGraph);
+      }
+      return null;
+    }),
+  );
 
-  colorScheme: Color = {
-    name: 'myScheme',
-    selectable: true,
-    group: ScaleType.Ordinal,
-    domain: ['#f9d048', '#f99848', '#65e665', '#70d2bd'],
-  };
+  constructor(private store: Store) {}
+
+  ngOnInit(): void {
+    this.store.dispatch(assessmentActions.loadGraph({ id: this.id }));
+  }
 }

@@ -1,29 +1,22 @@
-<div class="wrapper">
-  <h2 class="title">All Users:</h2>
-  <table
-    mat-table
-    [dataSource]="dataSource"
-    class="mat-elevation-z8 demo-table">
-    <ng-container
-      *ngFor="let column of columns"
-      [matColumnDef]="column.columnDef">
-      <th
-        mat-header-cell
-        *matHeaderCellDef>
-        {{ column.header }}
-      </th>
-      <td
-        mat-cell
-        *matCellDef="let row">
-        {{ column.cell(row) }}
-      </td>
-    </ng-container>
-
-    <tr
-      mat-header-row
-      *matHeaderRowDef="displayedColumns"></tr>
-    <tr
-      mat-row
-      *matRowDef="let row; columns: displayedColumns"></tr>
-  </table>
+<div
+  *ngIf="(loading$ | async) || (error$ | async); else content"
+  class="outer">
+  <app-loader *ngIf="loading$ | async"></app-loader>
+  <app-error *ngIf="error$ | async"></app-error>
 </div>
+<ng-template #content>
+  <div class="wrapper">
+    <h2 class="title">All Users:</h2>
+    <mat-card
+      *ngFor="let user of users$ | async"
+      class="card">
+      <mat-card-content class="user">
+        <span class="name">{{ user.name }} {{ user.lastName }}</span>
+        <span>{{ user.education }}</span>
+        <span>{{ user.role }}</span>
+        <span>{{ user.dateOfBirth }}</span>
+        <span>{{ user.position }}</span>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</ng-template>

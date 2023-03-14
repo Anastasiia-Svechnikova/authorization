@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+
 import { environment } from 'src/environments/environment.development';
 import {
   IApiLoginResponse,
   IUser,
   localStorageUser,
-} from '../models/auth.model';
+} from '../_core/models/auth.model';
 
 @Injectable({
   providedIn: 'root',
@@ -28,5 +29,13 @@ export class AuthService {
     const user = localStorage.getItem('user');
     const parsedUser = user && JSON.parse(user);
     return parsedUser;
+  }
+  public getToken(): string {
+    const user = this.getUserFromStorage();
+    return user && user.token;
+  }
+  public getRole(): string {
+    const user = this.getUserFromStorage();
+    return user && user.role;
   }
 }

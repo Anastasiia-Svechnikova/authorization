@@ -11,8 +11,8 @@
         floatLabel="auto">
         <mat-label>Email</mat-label>
         <input
-          type="email"
           matInput
+          type="email"
           formControlName="email" />
         <mat-error *ngIf="getErrors(['email'])['required']">
           Email is required
@@ -27,8 +27,8 @@
         floatLabel="auto">
         <mat-label>Password</mat-label>
         <input
-          type="password"
           matInput
+          type="password"
           formControlName="password" />
         <mat-error *ngIf="getErrors(['password'])['required']">
           Password is required
@@ -38,9 +38,9 @@
         </mat-error>
       </mat-form-field>
       <button
-        [disabled]="loginForm.invalid"
         class="submit-btn"
-        type="submit">
+        type="submit"
+        [disabled]="loginForm.invalid">
         Log in
       </button>
     </form>

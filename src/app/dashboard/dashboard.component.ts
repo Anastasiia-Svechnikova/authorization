@@ -1,45 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 
-const data = [
-  {
-    id: 1,
-    name: 'Core Drivers',
-    users_resolved: 5,
-    active: true,
-    image_url:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbpKuhQnt2Gn5wm0usuP2QK8CB5z8_yBB8oQ&usqp=CAU',
-  },
-  {
-    id: 2,
-    name: 'Stress Test',
-    users_resolved: 10,
-    active: false,
-    image_url:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6NL_oubZzB0fIH0wOF7eBaVGxE4ySd1QDz3m5YXIi8rcB9b3fMcZSy14hsGFAgLo0Xac&usqp=CAU',
-  },
-  {
-    id: 3,
-    name: 'Leadership Styles',
-    users_resolved: 7,
-    active: true,
-    image_url:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTExtoLVhMIfPRj_8d5RQKF2qjwUbuYL2tZTg&usqp=CAU',
-  },
-  {
-    id: 4,
-    name: 'Career Values',
-    users_resolved: 15,
-    active: false,
-    image_url:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCQwn4a_TR68qjoCIrzfFtBnUmnd0KvnsG7A&usqp=CAU',
-  },
-];
-
+import { assessmentActions } from '../_core/state/assessments/actions';
+import {
+  selectAssessments,
+  selectError,
+  selectLoading,
+} from '../_core/state/assessments/selectors';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent {
-  data = data;
+export class DashboardComponent implements OnInit {
+  assessments$ = this.store.select(selectAssessments);
+  error$ = this.store.select(selectError);
+  loading$ = this.store.select(selectLoading);
+  constructor(private store: Store) {}
+  ngOnInit(): void {
+    this.store.dispatch(assessmentActions.loadAssessments());
+  }
 }

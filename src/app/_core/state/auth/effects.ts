@@ -1,29 +1,29 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { Store } from '@ngrx/store';
 import { catchError, exhaustMap, map, of } from 'rxjs';
-import { AuthService } from '../../api/auth.service';
-import { authActions } from './actions';
-
-import { IApiLoginResponse } from '../../models/auth.model';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
+
+import { AuthService } from '../../../auth/auth.service';
+import { authActions } from './actions';
+import { IApiLoginResponse } from '../../models/auth.model';
 
 @Injectable()
 export class authEffects {
   constructor(
     private actions$: Actions,
-    private store: Store,
     private authService: AuthService,
+    private router: Router,
   ) {}
 
   login$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(authActions.loginStart),
       exhaustMap(({ user }) => {
-        console.log(user);
         return this.authService.login(user).pipe(
           map((response: IApiLoginResponse) => {
             this.authService.saveUserToStorage(response);
+            this.router.navigate(['/']);
             return authActions.loginSuccess({ user: response });
           }),
           catchError((errResp: HttpErrorResponse) => {
@@ -39,6 +39,7 @@ export class authEffects {
       ofType(authActions.logoutStart),
       map(() => {
         this.authService.logout();
+        this.router.navigate(['/login']);
         return authActions.logoutSuccess();
       }),
     );

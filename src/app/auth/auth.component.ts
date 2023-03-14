@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
+
 import { authActions } from '../_core/state/auth/actions';
 
 @Component({
@@ -20,7 +21,6 @@ export class AuthComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(this.loginForm.value);
     this.store.dispatch(authActions.loginStart({ user: this.loginForm.value }));
   }
 

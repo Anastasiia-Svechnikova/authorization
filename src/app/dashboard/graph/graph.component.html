@@ -1,12 +1,18 @@
-<ngx-charts-bar-horizontal
-  [view]="[320, 180]"
-  [results]="saleData"
-  [scheme]="colorScheme"
-  [legend]="false"
-  [showXAxisLabel]="true"
-  [showYAxisLabel]="true"
-  [showGridLines]="false"
-  [barPadding]="10"
-  [xAxis]="true"
-  [yAxis]="true">
-</ngx-charts-bar-horizontal>
+<div class="wrapper">
+  <app-loader *ngIf="(loading$ | async) === id; else content"></app-loader>
+  <ng-template #content>
+    <ngx-charts-bar-horizontal
+      *ngIf="graphData$ | async"
+      [view]="[320, 180]"
+      [results]="graphData$ | async"
+      [scheme]="colorScheme"
+      [legend]="false"
+      [showXAxisLabel]="true"
+      [showYAxisLabel]="true"
+      [showGridLines]="false"
+      [barPadding]="10"
+      [xAxis]="true"
+      [yAxis]="true">
+    </ngx-charts-bar-horizontal>
+  </ng-template>
+</div>
